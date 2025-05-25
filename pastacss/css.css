@@ -1,0 +1,272 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Poetsen+One&display=swap');
+
+* {
+ font-family: "Poetsen One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  text-decoration: none;
+}
+
+body{
+    margin: 0;
+    background: gray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.elevador{
+    position: relative;
+    width: 300px;
+    height: 400px;
+    border: 8px solid rgb(71, 70, 70);
+    overflow: hidden;
+}
+
+.porta{
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background: #323233;
+    transition: transform 0.8s ease;
+    z-index: 2;
+}
+
+.porta.esquerda {
+    left: 0;
+}
+
+.porta.direita {
+    right: 0;
+}
+
+.abrir.porta.esquerda {
+    transform: translateX(-100%);
+}
+
+.abrir.porta.direita {
+    transform: translateX(100%);
+}
+
+.conteudo {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    color: white;
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+.conteudo.mostrar{
+    display: block;
+    opacity: 1;
+}
+
+.mostrar {
+  opacity: 1;
+}
+
+#abrir0 {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #777e8a;
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: flex;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    margin: 8px;
+    transition: .2s;
+}
+
+#abrir0:hover{
+    transform: scale(1.10);
+    background-color: brown;
+}
+
+.fundo0{
+    
+    padding: 10px 10px 10px 10px;
+    width: 100;
+    height: 600px;
+    background: url(images/chao.png);
+    overflow: hidden;
+  
+}
+
+#abrir1 {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #777e8a;
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: flex;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    margin: 8px;
+    transition: .2s;
+}
+
+#abrir1:hover{
+    transform: scale(1.10);
+    background-color: rgb(72, 255, 0);
+}
+
+.fundo1{
+    padding: 10px 10px 10px 10px;
+    width: 100;
+    height: 600px;
+    background: url(images/arvore.png);
+    overflow: hidden;
+}
+
+#maça{
+    top: 10px;
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #d60f0f;
+    border: none;
+    cursor: pointer;
+    margin: 8px;
+    transition: .2s;
+    box-shadow: #f80101;
+}
+
+#maça:hover{
+    transform: scale(1.20);
+   box-shadow:2px #f80101;
+}
+
+#abrir2 {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #777e8a;
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: flex;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    margin: 8px;
+    transition: .2s;
+}
+
+#abrir2:hover{
+    transform: scale(1.10);
+    background-color: rgb(47, 152, 201);
+}
+.fundo2{
+    padding: 10px 10px 10px 10px;
+    width: 100;
+    height: 600px;
+    background: url(images/ceu.png);
+}
+
+.fundo2 > p{
+   color: black; 
+}
+
+.fundo2 > h2{
+    color: black;
+}
+
+#abrir3 {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #777e8a;
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: flex;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    margin: 8px;
+    transition: .2s;
+}
+
+#abrir3:hover{
+    transform: scale(1.10);
+    background-color: black;
+}
+
+.espaço{
+    background-color: black;
+    width: 100%x;
+    height: 100%;
+    overflow: hidden;
+    justify-content: flex;
+   padding: 0px 0px 0px 10px;
+}
+
+.estrela {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 2px;
+  background-color: white;
+  box-shadow:
+    20px 30px white,
+    60px 70px white,
+    100px 50px white,
+    -40px 80px white,
+    -80px 40px white,
+    150px 100px white,
+    200px 120px white,
+    250px 80px white,
+    -150px 110px white,
+    -200px 90px white,
+    120px 200px white,
+    180px 220px white,
+    240px 180px white,
+    300px 210px white,
+    -120px 200px white,
+    -180px 220px white,
+    100px 280px white,
+    160px 300px white,
+    220px 260px white,
+    -100px 280px white,
+    -160px 300px white;
+}
+@keyframes brilha {
+  0%, 100% { opacity: 0.3; }
+  50%      { opacity: 1;   }
+}
+
+.estrela {
+  animation: brilha 2s infinite ease-in-out;
+}
+
+.painel{
+    width: 32px;
+    height: 63px;
+    padding: 10px;
+    border: 5px solid rgb(71, 70, 70);
+    margin: 10px;
+}
+
+.painel{
+    top: 0;
+    width: 35px;
+    height: 120px;
+    background: #787881;
+    transition: transform 0.8s ease;
+    z-index: 2;
+}

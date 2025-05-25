@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap');
+
+a {
+  text-decoration: none;
+  font-family: "EB Garamond", serif;
+  font-optical-sizing: auto;
+}
+
+body{
+    background-color: black;
+    height: 100vh;
+}
+
+.interface{
+    max-width: 1280x;
+    margin: 0 auto;
+}
+
+header{
+    padding: 40px 4%;
+}
+
+header > .interface{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header a{
+    color:#301b58;
+    display: inline-block;
+    transition: .5s;
+   
+}
+
+header a:hover{
+    color:#B026FF;
+    transform: scale(1.10);
+    
+}
+
+header nav ul li{
+    display: inline;
+    padding: 0 40px;
+}
+
+header .botaocontato button{
+    padding: 10px 40px;
+    font-size: 30px;
+    font-weight: 400;
+    background-color:#301b58;
+    border: 0;
+    border-radius: 30px;
+    cursor: pointer;}
+    header .botaocontato button:hover{
+    box-shadow: 0px 0px 8px #482a80 ;
+}
+
+body {
+  background-color: #0c0716;
+ 
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+
+#abrir0 {
+  position: fixed;
+    top: 50%;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #777e8a;
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    margin: 8px;
+    transition: .2s;
+}
+
+#abrir0:hover{
+    transform: scale(1.10);
+    background-color:#B026FF
+ }

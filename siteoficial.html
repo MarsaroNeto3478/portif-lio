@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="pastacss/css.css">
+    <title></title>
+    <link rel="icon" href="pastacss/images/43b08bbb96d1ef7a1e29fa934084928e-icone-de-elevador-feminino-masculino.webp">
+</head>
+<body> 
+   <main>
+    <div class="elevador">
+    <div class="porta esquerda"></div><!--portaesquerda-->
+    <div class="porta direita"></div><!--portadireita-->
+    <div class="conteudo" id="conteudo0">
+      <div class="fundo0">
+      <h2>Olá, bem vindo ao elevador!</h2>
+      <p>Esse é o primeiro andar.</p>
+      <p>Sou o Alberto Luiz Marsaro Neto</p>
+      <img src="pastacss/images/WhatsApp Image 2025-05-23 at 18.32.21.jpeg" height="150" width="150" draggable="false">
+      <p>Sou aluno do curso de UPF de Ciências da computação.</p>
+      <p>Tenho 19 anos, curto jogar, cozinhar e tocar guitarra.</p>
+      <p>Por favor, utlize o elevador para explorar os outros andares e espere a porta abrir totalmente antes de clicar em outro botão, <b>RISCO DE QUEDA</b></p>
+      </div><!--fundo0-->
+    </div><!--conteudo0-->
+    <div class="conteudo" id="conteudo1">
+      <div class="fundo1">
+        <div id="maça" style="cursor: pointer;"></div>
+      </div><!--fundo1-->
+    </div><!--conteudo1-->
+    <div class="conteudo" id="conteudo2">
+      <div class="fundo2">
+        <h2>Use o avião para ver o meu projeto do site antigo!</h1>
+          <p>Boa viagem!</p>
+         <a href="mani.html">
+               <img src="pastacss/images/flight_takeoff_24dp_B026FF_FILL0_wght400_GRAD0_opsz24.svg" width="50" height="50" draggable="false">
+            </a>
+      </div>
+
+    </div><!--conteudo2-->
+    <div class="conteudo" id="conteudo3">
+      <div class="estrela"></div><!--estrela-->
+      <div class="espaço">
+      <h2>UAU! Você subiu tão alto que alcançou o espaço!</h2>
+      <h3>Clique no Foguete para ir para fora!</h3>
+      <a href="lua.html">
+               <img src="pastacss/images/rocket_launch_24dp_FFFFFFFF_FILL0_wght400_GRAD0_opsz24.svg" width="50" height="50" draggable="false">
+            </a>
+      </div><!--espaço-->
+    </div><!--conteudo3-->
+    </div><!--conteudo-->
+  </main>
+    <div class="painel">
+    <button classe="botoes" id="abrir3">3</button>
+    <button classe="botoes" id="abrir2">2</button>
+    <button classe="botoes" id="abrir1">1</button>
+    <button classe="botoes" id="abrir0">0</button>
+    </div><!--fechapainel-->
+  </div><!--elevador-->
+
+<audio id="sino" src="audios/bell-98033.mp3" preload="auto"></audio>
+<audio id="musica" src="audios/lounge-jazz-elevator-music-324902.mp3" preload="auto"></audio>
+<script>
+//pegar id maça e colocar uma funçao ao clique, que leva ao repositorio do git, maça do segundo andar.
+  document.getElementById("maça").addEventListener('click', function() {
+  window.open("https://www.gog.com/en/game/resident_evil_3", "_blank")
+  });
+//acabou maça
+</script>
+<script>
+  //definição das 
+const esquerda = document.querySelector('.porta.esquerda');
+const direita = document.querySelector('.porta.direita');
+const sino = document.getElementById('sino');
+const musica = document.getElementById("musica");
+
+const conteudos = [
+  document.getElementById('conteudo0'),
+  document.getElementById('conteudo1'),
+  document.getElementById('conteudo2'),
+  document.getElementById('conteudo3')
+];
+
+let andarAtual = 0;
+let portasAbertas = false;
+
+
+function atualizarTitulo() {
+  document.title = `Andar ${andarAtual}`;
+}
+
+function ocultarTodosConteudos() {
+  conteudos.forEach(c => {
+    c.classList.remove('mostrar');
+    c.style.display = 'none';
+  });
+}
+
+function abrirPortas() {
+  esquerda.classList.add('abrir');
+  direita.classList.add('abrir');
+
+  ocultarTodosConteudos();
+  const atual = conteudos[andarAtual];
+  atual.style.display = 'block';
+  setTimeout(() => atual.classList.add('mostrar'), 100);
+ 
+
+  portasAbertas = true;
+  sino.play();
+  musica.pause();
+  setTimeout(() => {
+    sino.pause();
+    sino.currentTime = 0;
+  }, 2500);
+}
+
+function fecharPortas() {
+  esquerda.classList.remove('abrir');
+  direita.classList.remove('abrir');
+  conteudos[andarAtual].classList.remove('mostrar');
+  portasAbertas = false;
+  musica.play();
+}
+
+function irParaAndar(destino) {
+  if (destino === andarAtual && portasAbertas) return;
+
+  document.querySelectorAll('.botoes').forEach(btn => btn.classList.remove('ativo'));
+  document.getElementById(`abrir${destino}`).classList.add('ativo');
+
+  const direcao = destino > andarAtual ? "Subindo" : "Descendo";
+  let pontos = 0;
+
+  const intervalo = setInterval(() => {
+    pontos = (pontos + 1) % 4;
+    document.title = direcao + ".".repeat(pontos);
+  }, 500);
+
+  const concluirMudança = () => {
+    clearInterval(intervalo);
+    andarAtual = destino;
+    atualizarTitulo();
+    abrirPortas();
+    document.getElementById(`abrir${destino}`).classList.remove('ativo');
+  };
+
+  fecharPortas();
+  setTimeout(concluirMudança, 4000);
+}
+
+// Inicialização
+atualizarTitulo();
+ocultarTodosConteudos();
+conteudos[0].style.display = 'block';
+conteudos[0].classList.add('mostrar');
+
+
+// Eventos dos botões
+document.getElementById('abrir0').addEventListener('click', () => irParaAndar(0));
+document.getElementById('abrir1').addEventListener('click', () => irParaAndar(1));
+document.getElementById('abrir2').addEventListener('click', () => irParaAndar(2));
+document.getElementById('abrir3').addEventListener('click', () => irParaAndar(3));
+</script>
+
+
+</body>
+</html> 

@@ -18,14 +18,14 @@
       <p>Esse é o primeiro andar.</p>
       <p>Sou o Alberto Luiz Marsaro Neto</p>
       <img src="pastacss/images/WhatsApp Image 2025-05-23 at 18.32.21.jpeg" height="150" width="150" draggable="false">
-      <p>Sou aluno do curso de UPF de Ciências da computação.</p>
+      <p>Sou aluno do curso da UPF de Ciências da computação.</p>
       <p>Tenho 19 anos, curto jogar, cozinhar e tocar guitarra.</p>
       <p>Por favor, utlize o elevador para explorar os outros andares e espere a porta abrir totalmente antes de clicar em outro botão, <b>RISCO DE QUEDA</b></p>
       </div><!--fundo0-->
     </div><!--conteudo0-->
     <div class="conteudo" id="conteudo1">
       <div class="fundo1">
-        <div id="maça" style="cursor: pointer;"></div>
+        <div id="maça" style="cursor: pointer;"></div><!--maça-->
       </div><!--fundo1-->
     </div><!--conteudo1-->
     <div class="conteudo" id="conteudo2">
@@ -35,7 +35,7 @@
          <a href="mani.html">
                <img src="pastacss/images/flight_takeoff_24dp_B026FF_FILL0_wght400_GRAD0_opsz24.svg" width="50" height="50" draggable="false">
             </a>
-      </div>
+      </div><!--fundo2-->
 
     </div><!--conteudo2-->
     <div class="conteudo" id="conteudo3">
@@ -61,14 +61,7 @@
 <audio id="sino" src="audios/bell-98033.mp3" preload="auto"></audio>
 <audio id="musica" src="audios/lounge-jazz-elevator-music-324902.mp3" preload="auto"></audio>
 <script>
-//pegar id maça e colocar uma funçao ao clique, que leva ao repositorio do git, maça do segundo andar.
-  document.getElementById("maça").addEventListener("click", function() {
-  window.open("https://github.com/MarsaroNeto3478/portif-lio", "_blank")
-  });
-//acabou maça
-</script>
-<script>
-  //definição das constantes
+//definição das constantes
 const esquerda = document.querySelector(".porta.esquerda"); //querySelector seria um getElementById, mas com classes, ids etc
 const direita = document.querySelector(".porta.direita");
 const sino = document.getElementById("sino");
@@ -86,7 +79,7 @@ let portasAbertas = false;
 //definiçao das funçoes
 //att o titulo da pagina para o andar atual
 function atualizarTitulo() {
-  document.title = "Andar ${andarAtual}";
+  document.title = `Andar ${andarAtual}`;
 }
 //funçao do titulo inicial do site
 function tituloInicial(){
@@ -131,7 +124,7 @@ function irParaAndar(destino) {
   if (destino === andarAtual && portasAbertas) return;
 //coloca o botao como ativo
   document.querySelectorAll(".botoes").forEach(btn => btn.classList.remove("ativo"));
-  document.getElementById("abrir${destino}").classList.add("ativo");
+  document.getElementById(`abrir${destino}`).classList.add("ativo");
 // identifica se o elevador ta subindo ou descendo, anima a barra de titulo 
   const direcao = destino > andarAtual ? "Subindo" : "Descendo";
   let pontos = 0;
@@ -146,7 +139,7 @@ function irParaAndar(destino) {
     andarAtual = destino;
     atualizarTitulo();
     abrirPortas();
-    document.getElementById("abrir${destino}").classList.remove("ativo");
+    document.getElementById(`abrir${destino}`).classList.remove("ativo");
   };
 //fecha a porta e coloca um delay de 4s para ir ao proximo andar
   fecharPortas();
@@ -159,14 +152,12 @@ ocultarTodosConteudos();
 conteudos[0].style.display = "block";
 conteudos[0].classList.add("mostrar");
 
-
 //coloca o evento de ao clicar no botao x ir para andar x
 document.getElementById("abrir0").addEventListener("click", () => irParaAndar(0));
 document.getElementById("abrir1").addEventListener("click", () => irParaAndar(1));
 document.getElementById("abrir2").addEventListener("click", () => irParaAndar(2));
 document.getElementById("abrir3").addEventListener("click", () => irParaAndar(3));
+
 </script>
-
-
 </body>
 </html> 

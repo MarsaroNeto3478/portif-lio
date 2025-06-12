@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="pastacss/css.css">
+    <title></title>
+    <link rel="icon" href="pastacss/images/43b08bbb96d1ef7a1e29fa934084928e-icone-de-elevador-feminino-masculino.webp">
+</head>
+<body> 
+   <main>
+    <div class="elevador">
+    <div class="porta esquerda"></div><!--portaesquerda-->
+    <div class="porta direita"></div><!--portadireita-->
+    <div class="conteudo" id="conteudo0">
+      <div class="fundo0">
+      <h2>Olá, bem vindo ao elevador!</h2>
+      <p>Esse é o primeiro andar.</p>
+      <p>Sou o Alberto Luiz Marsaro Neto</p>
+      <img src="pastacss/images/WhatsApp Image 2025-05-23 at 18.32.21.jpeg" height="150" width="150" draggable="false">
+      <p>Sou aluno do curso da UPF de Ciências da computação.</p>
+      <p>Tenho 19 anos, curto jogar, cozinhar e tocar guitarra.</p>
+      <p>Por favor, utlize o elevador para explorar os outros andares e espere a porta abrir totalmente antes de clicar em outro botão, <b>RISCO DE QUEDA</b></p>
+      </div><!--fundo0-->
+    </div><!--conteudo0-->
+    <div class="conteudo" id="conteudo1">
+      <div class="fundo1">
+        <div id="maça" style="cursor: pointer;"></div><!--maça-->
+      </div><!--fundo1-->
+    </div><!--conteudo1-->
+    <div class="conteudo" id="conteudo2">
+      <div class="fundo2">
+        <h2>Use o avião para ver o meu projeto do site antigo!</h1>
+          <p>Boa viagem!</p>
+         <a href="mani.html">
+               <img src="pastacss/images/flight_takeoff_24dp_B026FF_FILL0_wght400_GRAD0_opsz24.svg" width="50" height="50" draggable="false">
+            </a>
+      </div><!--fundo2-->
+
+    </div><!--conteudo2-->
+    <div class="conteudo" id="conteudo3">
+      <div class="estrela"></div><!--estrela-->
+      <div class="espaço">
+      <h2>UAU! Você subiu tão alto que alcançou o espaço!</h2>
+      <h3>Clique no Foguete para ir para fora!</h3>
+      <a href="lua.html">
+               <img src="pastacss/images/rocket_launch_24dp_FFFFFFFF_FILL0_wght400_GRAD0_opsz24.svg" width="50" height="50" draggable="false">
+            </a>
+      </div><!--espaço-->
+    </div><!--conteudo3-->
+    </div><!--conteudo-->
+  </main>
+    <div class="painel">
+    <button classe="botoes" id="abrir3">3</button>
+    <button classe="botoes" id="abrir2">2</button>
+    <button classe="botoes" id="abrir1">1</button>
+    <button classe="botoes" id="abrir0">0</button>
+    </div><!--fechapainel-->
+  </div><!--elevador-->
+
+<audio id="sino" src="audios/bell-98033.mp3" preload="auto"></audio>
+<audio id="musica" src="audios/lounge-jazz-elevator-music-324902.mp3" preload="auto"></audio>
+<script>
+  document.getElementById('maça').addEventListener('click', function () {
+  window.open('https://github.com/MarsaroNeto3478/portif-lio', '_blank');
+});
+</script>
+<script>
+//definição das constantes
+const esquerda = document.querySelector(".porta.esquerda"); //querySelector seria um getElementById, mas com classes, ids etc
+const direita = document.querySelector(".porta.direita");
+const sino = document.getElementById("sino");
+const musica = document.getElementById("musica");
+//colocando os conteudos dos andares num array, tipo uma lista
+const conteudos = [
+  document.getElementById("conteudo0"),
+  document.getElementById("conteudo1"),
+  document.getElementById("conteudo2"),
+  document.getElementById("conteudo3")
+];
+//definiçao das variaveis de estado
+let andarAtual = 0;
+let portasAbertas = false;
+//definiçao das funçoes
+//att o titulo da pagina para o andar atual
+function atualizarTitulo() {
+  document.title = `Andar ${andarAtual}`;
+}
+//funçao do titulo inicial do site
+function tituloInicial(){
+  document.title = "Andar ???"
+}
+//oculta os conteudos dos andares
+function ocultarTodosConteudos() {
+  conteudos.forEach(c => {
+    c.classList.remove("mostrar");
+    c.style.display = "none";
+  });
+}
+//funçao de abrir as portas
+function abrirPortas() {
+  esquerda.classList.add("abrir");
+  direita.classList.add("abrir");
+// chama a funçao de ocultar os conteudos, e mostra o conteudo do andar
+  ocultarTodosConteudos();
+  const atual = conteudos[andarAtual];
+  atual.style.display = "block";
+  setTimeout(() => atual.classList.add("mostrar"), 100);
+ 
+//toca o sino e para a musica quando abre
+  portasAbertas = true;
+  sino.play();
+  musica.pause();
+  setTimeout(() => {
+    sino.pause();
+    sino.currentTime = 0;
+  }, 2500);
+}
+//retira a classe abrir das portas, fechando elas, oculta os conteudos e a musica começa
+function fecharPortas() {
+  esquerda.classList.remove("abrir");
+  direita.classList.remove("abrir");
+  conteudos[andarAtual].classList.remove("mostrar");
+  portasAbertas = false;
+  musica.play();
+}
+//funçao de ir para andar, se o andar for o mesmo que foi clicado e as portas estiverem abertas, nao fazer nada
+function irParaAndar(destino) {
+  if (destino === andarAtual && portasAbertas) return;
+//coloca o botao como ativo
+  document.querySelectorAll(".botoes").forEach(btn => btn.classList.remove("ativo"));
+  document.getElementById(`abrir${destino}`).classList.add("ativo");
+// identifica se o elevador ta subindo ou descendo, anima a barra de titulo 
+  const direcao = destino > andarAtual ? "Subindo" : "Descendo";
+  let pontos = 0;
+//faz a animação dos 3 pontinhos
+  const intervalo = setInterval(() => {
+    pontos = (pontos + 1) % 4;
+    document.title = direcao + ".".repeat(pontos);
+  }, 500);
+//funçao de conclusao de mudança de andar, att o titulo, e abre as portas
+  const concluirMudança = () => {
+    clearInterval(intervalo);
+    andarAtual = destino;
+    atualizarTitulo();
+    abrirPortas();
+    document.getElementById(`abrir${destino}`).classList.remove("ativo");
+  };
+//fecha a porta e coloca um delay de 4s para ir ao proximo andar
+  fecharPortas();
+  setTimeout(concluirMudança, 4000);
+}
+
+//inicializaçao, definiçao do titulo e carrega o conteudo do andar 0
+tituloInicial();
+ocultarTodosConteudos();
+conteudos[0].style.display = "block";
+conteudos[0].classList.add("mostrar");
+
+//coloca o evento de ao clicar no botao x ir para andar x
+document.getElementById("abrir0").addEventListener("click", () => irParaAndar(0));
+document.getElementById("abrir1").addEventListener("click", () => irParaAndar(1));
+document.getElementById("abrir2").addEventListener("click", () => irParaAndar(2));
+document.getElementById("abrir3").addEventListener("click", () => irParaAndar(3));
+
+</script>
+</body>
+</html> 
